@@ -1,0 +1,36 @@
+# @package data
+
+_target_: src.data.dataset.VideoCaptioningDataset
+
+# Dataset settings
+data_dir: data/
+train_split: train
+val_split: val
+test_split: test
+
+# Video processing
+max_frames: 8
+frame_sampling_strategy: uniform  # uniform, random, keyframe
+video_fps: 1.0
+image_size: 224
+video_codec: mp4v
+
+# Text processing
+max_caption_length: 200
+tokenizer_name: "Salesforce/blip2-opt-2.7b"
+padding: true
+truncation: true
+
+# Data augmentation
+enable_augmentation: true
+augmentation_prob: 0.5
+augmentations:
+  - horizontal_flip
+  - color_jitter
+  - gaussian_blur
+
+# Data loading
+num_workers: 4
+pin_memory: true
+persistent_workers: true
+prefetch_factor: 2

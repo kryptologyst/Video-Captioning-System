@@ -1,0 +1,41 @@
+# @package eval
+
+_target_: src.evaluation.evaluator.VideoCaptioningEvaluator
+
+# Evaluation metrics
+metrics:
+  - cider
+  - bleu
+  - meteor
+  - rouge
+  - bert_score
+
+# Evaluation settings
+eval_batch_size: 16
+max_eval_samples: null  # null for all samples
+num_beams: 4
+temperature: 1.0
+do_sample: false
+
+# Metric-specific settings
+cider:
+  n: 4
+  sigma: 6.0
+  
+bleu:
+  max_order: 4
+  smooth: false
+  
+meteor:
+  alpha: 0.9
+  beta: 3.0
+  gamma: 0.5
+  
+rouge:
+  rouge_types: ["rouge1", "rouge2", "rougeL"]
+  use_stemmer: true
+  
+bert_score:
+  model_type: "microsoft/DialoGPT-medium"
+  lang: "en"
+  rescale_with_baseline: true

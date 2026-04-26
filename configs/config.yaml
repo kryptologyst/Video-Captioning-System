@@ -1,0 +1,50 @@
+# @package _global_
+
+defaults:
+  - model: blip2_video_captioning
+  - train: default
+  - eval: default
+  - data: video_captioning_dataset
+
+# Global settings
+seed: 42
+device: auto  # auto, cuda, mps, cpu
+mixed_precision: true
+compile_model: false
+
+# Paths
+data_dir: data/
+output_dir: outputs/
+checkpoint_dir: checkpoints/
+log_dir: logs/
+
+# Model settings
+model_name: "Salesforce/blip2-opt-2.7b"
+max_length: 77
+num_beams: 4
+temperature: 1.0
+
+# Training settings
+batch_size: 8
+learning_rate: 1e-5
+num_epochs: 10
+warmup_steps: 100
+gradient_accumulation_steps: 1
+max_grad_norm: 1.0
+
+# Evaluation settings
+eval_batch_size: 16
+eval_steps: 500
+save_steps: 1000
+logging_steps: 100
+
+# Data settings
+max_frames: 8
+frame_sampling_strategy: uniform  # uniform, random, keyframe
+video_fps: 1.0
+image_size: 224
+
+# Safety and filtering
+enable_safety_filter: true
+enable_content_filter: true
+max_caption_length: 200

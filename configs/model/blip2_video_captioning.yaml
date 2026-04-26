@@ -1,0 +1,28 @@
+# @package model
+
+_target_: src.models.blip2_video_captioning.BLIP2VideoCaptioningModel
+
+# Model architecture
+vision_model_name: "Salesforce/blip2-opt-2.7b"
+text_model_name: "Salesforce/blip2-opt-2.7b"
+cross_attention_layers: 6
+hidden_size: 2560
+num_attention_heads: 32
+
+# Video processing
+max_frames: 8
+frame_sampling_strategy: uniform
+video_fps: 1.0
+image_size: 224
+
+# Generation settings
+max_length: 77
+num_beams: 4
+temperature: 1.0
+do_sample: false
+early_stopping: true
+
+# Training settings
+freeze_vision_encoder: false
+freeze_text_encoder: false
+use_gradient_checkpointing: true
